@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Meus Bilhetes de Aposta</h2>
+    <a href="{{ url_for('dashboard', id=usuario_id) }}" class="btn btn-outline-secondary">Voltar ao Painel</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-striped align-middle mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th># Bilhete</th>
+                    <th>Valor Apostado</th>
+                    <th>ODD</th>
+                    <th>Retorno / Lucro Projetado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bilhete in bilhetes %}
+                <tr>
+                    <td><strong>#{{ bilhete.id }}</strong></td>
+                    <td>{{ bilhete.valor }}</td>
+                    <td>{{ bilhete.odd }}</td>
+                    <td class="text-success fw-bold">{{ bilhete.lucro }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center py-4 text-muted">Você ainda não realizou nenhuma aposta.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
